@@ -8,7 +8,6 @@ public class Direction : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
-       
     }
 	
 	// Update is called once per frame
@@ -16,6 +15,6 @@ public class Direction : MonoBehaviour {
         float inputX = Input.GetAxis("Horizontal2");
         //float inputY = Input.GetAxis("Vertical");
         rb.MoveRotation(rb.rotation + speed * inputX);
-     
-	}
+      
+    }
 }
