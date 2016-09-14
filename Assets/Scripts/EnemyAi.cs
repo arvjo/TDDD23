@@ -14,7 +14,7 @@ public class EnemyAi : MonoBehaviour {
     void Start () {
         enemyRb = GetComponent<Rigidbody2D>();
         playerRb = player.GetComponent<Rigidbody2D>();
-        //InvokeRepeating("shoot", 2, 0.5F);
+        InvokeRepeating("shoot", 2, 0.5F);
     }
 	
 	// Update is called once per frame
