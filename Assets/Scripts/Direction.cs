@@ -12,8 +12,7 @@ public class Direction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        float inputX = Input.GetAxis("Horizontal2");
-        //float inputY = Input.GetAxis("Vertical");
+        float inputX = Input.GetAxis("Horizontal2");     
         rb.MoveRotation(rb.rotation + speed * inputX);
       
     }
