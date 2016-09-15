@@ -9,16 +9,16 @@ public class GameController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-       // spawnPlayer();
         //spawnEnemies();
+        //spawnPlayer();
     }
 
-   /* void spawnPlayer()
+    void spawnPlayer()
     {
-        Vector3 spawnPosition = new Vector3(0,0,0);
+        Vector3 spawnPosition = new Vector3(1,1,1);
         Quaternion spawnRotation = Quaternion.identity;
         Instantiate(player, spawnPosition, spawnRotation);
-    }*/
+    }
 
     void spawnEnemies()
     {
