@@ -19,12 +19,12 @@ public class EnemyAi : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        //Vector2.Angle(enemyRb.position, playerRb.position);
-        //enemyRb.rotation = Vector2.Angle(enemyRb.position, playerRb.position);
-        //enemyRb.transform
-        Debug.Log(enemyRb.rotation);
-        //enemyRb.MoveRotation();
-        //enemyRb.AddForce(playerRb.position - enemyRb.position);
+        
+        Vector2 dir = playerRb.position - enemyRb.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        
+        enemyRb.AddForce(playerRb.position - enemyRb.position);
         if (enemyRb.velocity.magnitude > maxSpeed)
         {
             enemyRb.velocity = Vector3.ClampMagnitude(enemyRb.velocity, maxSpeed);
