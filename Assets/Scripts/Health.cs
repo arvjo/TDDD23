@@ -9,6 +9,7 @@ public class Health : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider)
     {
         Bullet projectile = collider.gameObject.GetComponent<Bullet>();
+        
         Debug.Log("trigger");
         if (projectile != null)
         {
