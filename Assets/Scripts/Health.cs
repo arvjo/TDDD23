@@ -10,13 +10,13 @@ public class Health : MonoBehaviour {
     {
         Bullet projectile = collider.gameObject.GetComponent<Bullet>();
         
-        Debug.Log("trigger");
+       
         if (projectile != null)
         {
-            Debug.Log("Hej");
+       
             if (projectile.isEnemyShoot != isEnemy)
             {
-                Debug.Log("träff");
+               
                 hp -= projectile.damadge;
                 Destroy(projectile.gameObject);
                 if(hp == 0)

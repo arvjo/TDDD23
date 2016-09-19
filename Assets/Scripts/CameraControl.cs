@@ -4,12 +4,12 @@ using System.Collections;
 public class CameraControl : MonoBehaviour {
 
 
-    private GameObject player;
+    public GameObject player;
     private Vector3 offset;
 
 	// Use this for initialization
 	void Start () {
-        GameObject player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
         offset = transform.position - player.transform.position;
 	}
 	

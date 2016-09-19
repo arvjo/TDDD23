@@ -12,14 +12,16 @@ public class EnemyAi : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        GameObject player = GameObject.FindWithTag("Player");
         enemyRb = GetComponent<Rigidbody2D>();
+     
         playerRb = player.GetComponent<Rigidbody2D>();
         InvokeRepeating("shoot", 2, 0.5F);
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        
+       
         Vector2 dir = playerRb.position - enemyRb.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

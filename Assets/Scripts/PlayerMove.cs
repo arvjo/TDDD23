@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
-        float inputX = Input.GetAxis("Horizontal");
+        //float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
         //Go forward
         if (inputY > 0)
