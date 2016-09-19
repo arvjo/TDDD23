@@ -27,6 +27,11 @@ public class EnemyAi : MonoBehaviour {
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         
         enemyRb.AddForce(playerRb.position - enemyRb.position);
+        Debug.Log(dir.magnitude);
+        if(dir.magnitude < 3)
+        {
+            enemyRb.velocity = enemyRb.velocity/1.05f;
+        } 
         if (enemyRb.velocity.magnitude > maxSpeed)
         {
             enemyRb.velocity = Vector3.ClampMagnitude(enemyRb.velocity, maxSpeed);
