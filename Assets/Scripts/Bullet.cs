@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour {
     // Use this for initialization
     public bool isEnemyShoot = false;
 	void Start () {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 2);
 	}
 	
 }
