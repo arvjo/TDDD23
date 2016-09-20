@@ -7,11 +7,12 @@ public class Health : MonoBehaviour {
     public bool isEnemy = true;
     private GameController gameController;
 	// Use this for initialization
+   
 	void OnTriggerEnter2D(Collider2D collider)
     {
         Bullet projectile = collider.gameObject.GetComponent<Bullet>();
-        
-       
+
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         if (projectile != null)
         {
        
@@ -22,10 +23,10 @@ public class Health : MonoBehaviour {
                 Destroy(projectile.gameObject);
                 if(hp == 0)
                 {
-                    if (gameObject.tag == "Player")
+                    Debug.Log("hej");
+                    if(gameObject.tag == "Player")
                     {
-                         Debug.Log("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-                         //gameController.GameOver();
+                        gameController.GetComponent<GameController>().GameOver();                    
                     }
                     Destroy(gameObject);
                    
@@ -33,4 +34,5 @@ public class Health : MonoBehaviour {
             }
         }
     }
+
 }

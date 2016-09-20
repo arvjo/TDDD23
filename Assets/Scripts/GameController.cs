@@ -7,14 +7,12 @@ public class GameController : MonoBehaviour {
     public GameObject player;
     public Vector3 spawnValues;
     public int enemyCount;
-    private bool gameOver;
+    public bool gameOver = false;
     // Use this for initialization
     void Start()
-    {
-        gameOver = false;
-        spawnPlayer();
+    {      
+        spawnPlayer(); 
         StartCoroutine(spawnEnemies(enemyCount));
-       
     }
 
     void spawnPlayer()
@@ -31,16 +29,16 @@ public class GameController : MonoBehaviour {
     
         for (int i = 0; i < enemyCount; ++i)
         {
-         
+            if (gameOver == true)
+            {
+                
+                break;
+            }
             Vector3 spawnPosition = new Vector3(spawnValues.x, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(enemy, spawnPosition, spawnRotation);
             Debug.Log(gameOver);
-            if (gameOver)
-            {
-                Debug.Log("BAJS111111111111111111111");
-                break;
-            }
+          
             yield return new WaitForSeconds(3f);
                
          
@@ -48,16 +46,15 @@ public class GameController : MonoBehaviour {
         }
         
     }
-
+ 
     public void GameOver()
     {
-        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        gameOver = true;
-        Debug.Log(gameOver);
+        gameOver = true;       
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+      
+
+    }
 }
