@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -29,11 +30,6 @@ public class GameController : MonoBehaviour {
     
         for (int i = 0; i < enemyCount; ++i)
         {
-            if (gameOver == true)
-            {
-                
-                break;
-            }
             Vector3 spawnPosition = new Vector3(spawnValues.x, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(enemy, spawnPosition, spawnRotation);
@@ -54,7 +50,9 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-      
-
+        if (gameOver == true)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }
