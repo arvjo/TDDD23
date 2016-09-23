@@ -9,10 +9,18 @@ public class PlayerMove : MonoBehaviour {
     public float reverseSpeed;
     public float maxSpeed = 10f;
     private Rigidbody2D rb;
+    private int extraBullets = 1;
+    private TallentTree tallentTree;
 	// Use this for initialization
 	void Start () {
-        rb = GetComponent<Rigidbody2D>();      
-
+        rb = GetComponent<Rigidbody2D>();
+       
+        extraBullets = tallentTree.getExtraBullets();
+        Debug.Log(extraBullets);
+    }
+    void Awake()
+    {
+        tallentTree = GameObject.FindWithTag("TallentTree").GetComponent<TallentTree>();
     }
 
     // Update is called once per frame
@@ -48,7 +56,13 @@ public class PlayerMove : MonoBehaviour {
         //Creating bullets
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet, rb.position, transform.rotation);
+            for (int i = 0; i < extraBullets; ++i)
+            {
+                
+                Quaternion rotationAmount = Quaternion.Euler(0, 0, (extraBullets - 1)* -15 + (30 *i));
+                Debug.Log(rotationAmount);
+                Instantiate(bullet, rb.position, transform.rotation * rotationAmount);
+            }
         }
 
     }

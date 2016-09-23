@@ -11,6 +11,12 @@ public class Menu : MonoBehaviour {
         {
             SceneManager.LoadScene("scene1");
         }
+
+
+        if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3 +50) - (buttonHeight / 2), buttonWidth, buttonHeight), "Tallents"))
+        {
+            SceneManager.LoadScene("Tallents");
+        }
     }
 	// Use this for initialization
 	void Start () {
