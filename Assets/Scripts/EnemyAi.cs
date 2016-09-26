@@ -25,12 +25,13 @@ public class EnemyAi : MonoBehaviour {
 	void FixedUpdate () {
         if (playerRb != null)
         {
+            //turning the enemy towards the player
             Vector2 dir = playerRb.position - enemyRb.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             enemyRb.AddForce(playerRb.position - enemyRb.position);
-            //Debug.Log(dir.magnitude);
+            
             if (dir.magnitude < 3)
             {
                 enemyRb.velocity = enemyRb.velocity / 1.05f;
