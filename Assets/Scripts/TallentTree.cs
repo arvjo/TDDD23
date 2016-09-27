@@ -10,6 +10,7 @@ public class TallentTree : MonoBehaviour {
     private static TallentTree tallentTreeInstance;
     private bool showButton = true;
     private int currentScene;
+    private int previousScene;
 
     void Awake () {
         DontDestroyOnLoad(this.gameObject);
@@ -50,5 +51,4 @@ public class TallentTree : MonoBehaviour {
     {
         return bullets;
     }
-	
 }

@@ -3,14 +3,23 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameOverButtons : MonoBehaviour {
-
-	public void RestartButton(string level)
+    private GameState gameState;
+    private int previousScene;
+    void Awake()
     {
-        SceneManager.LoadScene(level);
+        gameState = GameObject.FindWithTag("GameState").GetComponent<GameState>();
+        previousScene = gameState.getPrevScene();
+        Debug.Log(previousScene);
+    }
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(previousScene);
     }
 
     public void MenuButton(string menu)
     {
         SceneManager.LoadScene(menu);
     }
+
+   
 }
