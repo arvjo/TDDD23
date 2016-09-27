@@ -11,6 +11,8 @@ public class TallentTree : MonoBehaviour {
     private bool showButton = true;
     private int currentScene;
     private int previousScene;
+    private int tPoints = 0;
+    private int newTPoints = 0;
 
     void Awake () {
         DontDestroyOnLoad(this.gameObject);
@@ -25,8 +27,8 @@ public class TallentTree : MonoBehaviour {
             tallentTreeInstance.showButton = true;
             Destroy(this.gameObject);
         }
-
     }
+
     void OnGUI()
     {
         const int buttonWidth = 200;
@@ -34,11 +36,20 @@ public class TallentTree : MonoBehaviour {
        
         if (showButton && currentScene == 4)
         {
+            if (tPoints == 0)
+            {
+                GUI.enabled = false;
+            }else
+            {
+                GUI.enabled = true;
+            }
             if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4) - (buttonHeight / 2), buttonWidth, buttonHeight), "2 bullets!"))
             {
                 ++bullets;
+
                 Debug.Log(bullets);
             }
+            GUI.enabled = true;
             if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3 + 50) - (buttonHeight / 2), buttonWidth, buttonHeight), "Menu"))
             {
                 SceneManager.LoadScene("menu");
@@ -50,5 +61,14 @@ public class TallentTree : MonoBehaviour {
     public int getExtraBullets()
     {
         return bullets;
+    }
+    public void addTPoints()
+    {
+        ++newTPoints;
+        if(newTPoints != tPoints)
+        {
+            tPoints = newTPoints;
+        }
+        newTPoints = 0;
     }
 }

@@ -15,7 +15,6 @@ public class PlayerMove : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         extraBullets = tallentTree.getExtraBullets();
-        Debug.Log(extraBullets);
     }
     void Awake()
     {
@@ -48,8 +47,7 @@ public class PlayerMove : MonoBehaviour {
             for (int i = 0; i < extraBullets; ++i)
             {
                 
-                Quaternion rotationAmount = Quaternion.Euler(0, 0, (extraBullets - 1)* -15 + (30 *i));
-                Debug.Log(rotationAmount);
+                Quaternion rotationAmount = Quaternion.Euler(0, 0, (extraBullets - 1)* -15 + (30 *i));          
                 Instantiate(bullet, rb.position, transform.rotation * rotationAmount);
             }
         }

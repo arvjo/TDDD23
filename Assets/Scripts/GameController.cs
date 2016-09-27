@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
-
+    private GameState gameState;
     public GameObject enemy;
     public GameObject player;
     public Vector3 spawnValues;
@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        gameState = GameObject.FindWithTag("GameState").GetComponent<GameState>();
         currentScene = SceneManager.GetActiveScene().buildIndex;
         spawnPlayer();
         enemyLives = enemyCount;
@@ -37,8 +38,7 @@ public class GameController : MonoBehaviour {
         {
             Vector3 spawnPosition = new Vector3(spawnValues.x, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
             Quaternion spawnRotation = Quaternion.identity;
-            Instantiate(enemy, spawnPosition, spawnRotation);
-            Debug.Log(gameOver);
+            Instantiate(enemy, spawnPosition, spawnRotation);        
           
             yield return new WaitForSeconds(3f);
                
@@ -68,6 +68,7 @@ public class GameController : MonoBehaviour {
         if (enemyLives == 0)
         {
             ++currentScene;
+            gameState.setCleard();
             SceneManager.LoadScene(currentScene);
         }
     }

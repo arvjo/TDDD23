@@ -9,7 +9,6 @@ public class GameOverButtons : MonoBehaviour {
     {
         gameState = GameObject.FindWithTag("GameState").GetComponent<GameState>();
         previousScene = gameState.getPrevScene();
-        Debug.Log(previousScene);
     }
     public void RestartButton()
     {
