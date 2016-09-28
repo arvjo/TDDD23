@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour {
     private GameState gameState;
     public GameObject enemy;
     public GameObject player;
+    public GameObject enemy2;
     public Vector3 spawnValues;
     public int enemyCount;
     private int enemyLives;
@@ -18,7 +19,7 @@ public class GameController : MonoBehaviour {
         currentScene = SceneManager.GetActiveScene().buildIndex;
         spawnPlayer();
         enemyLives = enemyCount;
-        StartCoroutine(spawnEnemies(enemyCount));
+        StartCoroutine(spawnEnemies(enemyCount,currentScene-1));
     }
 
     void spawnPlayer()
@@ -29,7 +30,7 @@ public class GameController : MonoBehaviour {
         Instantiate(player, spawnPosition, spawnRotation);
     }
 
-    IEnumerator spawnEnemies(int enemyCount)
+    IEnumerator spawnEnemies(int enemyCount, int currentScene)
     {
 
         yield return new WaitForSeconds(2f);

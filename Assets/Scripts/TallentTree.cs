@@ -49,6 +49,7 @@ public class TallentTree : MonoBehaviour {
 
                 Debug.Log(bullets);
             }
+
             GUI.enabled = true;
             if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3 + 50) - (buttonHeight / 2), buttonWidth, buttonHeight), "Menu"))
             {

@@ -21,7 +21,7 @@ public class GameState : MonoBehaviour {
             for (int i = 0; i < 2; ++i)
             {
                 cleardLevels[i] = false;
-                Debug.Log(" hej" + cleardLevels[i]);
+                //Debug.Log(" hej" + cleardLevels[i]);
             }
             gameStateInstance = this;           
         }

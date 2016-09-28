@@ -46,7 +46,6 @@ public class PlayerMove : MonoBehaviour {
         {
             for (int i = 0; i < extraBullets; ++i)
             {
-                
                 Quaternion rotationAmount = Quaternion.Euler(0, 0, (extraBullets - 1)* -15 + (30 *i));          
                 Instantiate(bullet, rb.position, transform.rotation * rotationAmount);
             }
