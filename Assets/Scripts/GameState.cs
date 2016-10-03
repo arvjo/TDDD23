@@ -34,9 +34,11 @@ public class GameState : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         gameStateInstance.currentScene = SceneManager.GetActiveScene().buildIndex;
-        if (gameStateInstance.currentScene != 3)
+        if (gameStateInstance.currentScene > 0 && gameStateInstance.currentScene < 3 )
         {
+            
             gameStateInstance.previousScene = gameStateInstance.currentScene;
+          
         }
     }
 
@@ -47,12 +49,14 @@ public class GameState : MonoBehaviour {
 
     public void setCleard()
     {
-        cleardLevels[currentScene-1] = true;  
-        for(int i = 0; i < cleardLevels.Length; ++i)
-        {
-            if (cleardLevels[i]== true)
+        if (cleardLevels[currentScene - 1] == false) { 
+            cleardLevels[currentScene - 1] = true;
+            for (int i = 0; i < cleardLevels.Length; ++i)
             {
-                tallentTree.addTPoints();
+                if (cleardLevels[i] == true)
+                {
+                    tallentTree.addTPoints();
+                }
             }
         }
     }

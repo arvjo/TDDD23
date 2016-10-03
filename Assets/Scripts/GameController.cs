@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour {
         gameState = GameObject.FindWithTag("GameState").GetComponent<GameState>();
         currentScene = SceneManager.GetActiveScene().buildIndex;
         spawnPlayer();
-        enemyLives = enemyCount;
+        enemyLives = enemyCount*currentScene;
         StartCoroutine(spawnEnemies(enemyCount,currentScene-1));
     }
 
@@ -37,10 +37,14 @@ public class GameController : MonoBehaviour {
     
         for (int i = 0; i < enemyCount; ++i)
         {
-            Vector3 spawnPosition = new Vector3(spawnValues.x, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
+            Vector3 spawnPosition = new Vector3(spawnValues.x, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);        
             Quaternion spawnRotation = Quaternion.identity;
-            Instantiate(enemy, spawnPosition, spawnRotation);        
-          
+            Instantiate(enemy, spawnPosition, spawnRotation);
+            if (currentScene == 1)
+            {
+                Vector3 spawnPosition2 = new Vector3(spawnValues.x - 40, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
+                Instantiate(enemy2, spawnPosition2 , spawnRotation);
+            }
             yield return new WaitForSeconds(3f);
                
          
