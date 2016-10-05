@@ -1,19 +1,40 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Health : MonoBehaviour {
 
     public int hp = 1;
     public bool isEnemy = true;
-    private GameController gameController;
+    protected GameController gameController;
     private int enemyCount;
-	// Use this for initialization
-
-	void OnTriggerEnter2D(Collider2D collider)
+    protected Slider healthBar;
+    private float lastDmgTaken;
+    private float tmp;
+    // Use this for initialization
+    void Start()
+    {
+        healthBar = GameObject.FindWithTag("Healthbar").GetComponent<Slider>();
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        lastDmgTaken = 0;
+    }
+    void Update()
+    {
+        if (gameObject.tag == "Player")
+        { 
+            if (Time.time - lastDmgTaken > 5)
+            {
+                hp = 10;
+                healthBar.value = hp;
+            }
+        }
+    }
+ 
+    void OnTriggerEnter2D(Collider2D collider)
     {
         Bullet projectile = collider.gameObject.GetComponent<Bullet>();
-        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-     
+        
+        
         if (projectile != null)
         {
        
@@ -22,7 +43,12 @@ public class Health : MonoBehaviour {
                
                 hp -= projectile.damadge;
                 Destroy(projectile.gameObject);
-                if(hp == 0)
+                if (gameObject.tag == "Player")
+                {
+                    healthBar.value = hp;
+                    lastDmgTaken = Time.time;
+                }
+                    if (hp == 0)
                 {
                    
                     if(gameObject.tag == "Player")

@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour {
     private TallentTree tallentTree;
     public float fireRate = 0.5F;
     private float nextFire = 0.0F;
+    
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();

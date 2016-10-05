@@ -12,9 +12,11 @@ public class GameController : MonoBehaviour {
     private int enemyLives;
     public bool gameOver = false;
     private int currentScene;
+    private bool showButton = false;
     // Use this for initialization
     void Start()
     {
+        Time.timeScale = 1;
         gameState = GameObject.FindWithTag("GameState").GetComponent<GameState>();
         currentScene = SceneManager.GetActiveScene().buildIndex;
         spawnPlayer();
@@ -72,9 +74,26 @@ public class GameController : MonoBehaviour {
         }
         if (enemyLives == 0)
         {
-            ++currentScene;
+            
             gameState.setCleard();
-            SceneManager.LoadScene(currentScene);
+            showButton = true;
+            Time.timeScale = 0;
+            
+
         }
     }
+    void OnGUI()
+    {
+        const int buttonWidth = 200;
+        const int buttonHeight = 100;
+        if (showButton == true)
+        {
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4) - (buttonHeight / 2), buttonWidth, buttonHeight), "Next Level"))
+            {      
+                ++currentScene;
+                SceneManager.LoadScene(currentScene);
+            }
+        }
+    }
+
 }
