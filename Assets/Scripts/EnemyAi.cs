@@ -30,12 +30,20 @@ public class EnemyAi : MonoBehaviour {
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            enemyRb.AddForce(playerRb.position - enemyRb.position);
+          
             
             if (dir.magnitude < 3)
             {
                 enemyRb.velocity = enemyRb.velocity / 1.05f;
             }
+            /*if (enemyRb.transform.rotation == Quaternion.AngleAxis(-angle, Vector3.forward))
+            {
+                dir = playerRb.position - enemyRb.position;
+                angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            }*/
+            enemyRb.AddForce(playerRb.position - enemyRb.position);
         }
         if (enemyRb.velocity.magnitude > maxSpeed)
         {
