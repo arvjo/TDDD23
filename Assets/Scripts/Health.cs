@@ -24,7 +24,7 @@ public class Health : MonoBehaviour {
         { 
             if (Time.time - lastDmgTaken > 5)
             {
-                hp = 10;
+                hp = 5;
                 healthBar.value = hp;
             }
         }

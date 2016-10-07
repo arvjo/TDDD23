@@ -54,6 +54,12 @@ public class PlayerMove : MonoBehaviour {
             }
 
         }
+        if (Input.GetButton("y-button"))
+        {
+            rb.velocity = new Vector2(1,1);
+            rb.transform.position += transform.right * 2;
+
+        }
 
 
     }

@@ -32,7 +32,7 @@ public class EnemyAi : MonoBehaviour {
 
           
             
-            if (dir.magnitude < 3)
+            if (dir.magnitude < 5)
             {
                 enemyRb.velocity = enemyRb.velocity / 1.05f;
             }
