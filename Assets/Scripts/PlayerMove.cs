@@ -13,7 +13,10 @@ public class PlayerMove : MonoBehaviour {
     private TallentTree tallentTree;
     public float fireRate = 0.5F;
     private float nextFire = 0.0F;
-    
+    private float jumpRate = 1.0F;
+    private float nextJump = 0.0F;
+  
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -54,12 +57,17 @@ public class PlayerMove : MonoBehaviour {
             }
 
         }
-        if (Input.GetButton("y-button"))
+      
+       if (Input.GetButtonUp("y-button")&& Time.time > nextJump)
         {
+            nextJump = Time.time + jumpRate;
+            
             rb.velocity = new Vector2(1,1);
-            rb.transform.position += transform.right * 2;
+            rb.transform.position += transform.right * 10;
+            
 
         }
+        
 
 
     }
