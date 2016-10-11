@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraControl : MonoBehaviour {
 
 
-    public GameObject player;
+    private GameObject player;
     private Vector3 offset;
 
 	// Use this for initialization

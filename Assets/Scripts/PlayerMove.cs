@@ -15,7 +15,8 @@ public class PlayerMove : MonoBehaviour {
     private float nextFire = 0.0F;
     private float jumpRate = 1.0F;
     private float nextJump = 0.0F;
-  
+    private Vector3 oldPos;
+    private int jumpDist = 3;
 
     // Use this for initialization
     void Start () {
@@ -61,10 +62,17 @@ public class PlayerMove : MonoBehaviour {
        if (Input.GetButtonUp("y-button")&& Time.time > nextJump)
         {
             nextJump = Time.time + jumpRate;
-            
-            rb.velocity = new Vector2(1,1);
-            rb.transform.position += transform.right * 10;
-            
+            oldPos = rb.transform.position;
+            if ((rb.transform.position += transform.right * jumpDist).x > 80 || (rb.transform.position += transform.right * jumpDist).x < -80
+                || (rb.transform.position += transform.right * jumpDist).y > 40 || (rb.transform.position += transform.right * jumpDist).y < -40)
+            {                         
+                rb.transform.position = oldPos;
+            }
+            else
+            {              
+                rb.velocity = new Vector2(1, 1);
+                rb.transform.position += transform.right * jumpDist;
+            }
 
         }
         
