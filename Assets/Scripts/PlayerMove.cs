@@ -69,9 +69,8 @@ public class PlayerMove : MonoBehaviour {
                 rb.transform.position = oldPos;
             }
             else
-            {              
-                rb.velocity = new Vector2(1, 1);
-                rb.transform.position += transform.right * jumpDist;
+            {               
+                rb.velocity = new Vector2(1, 0);           
             }
 
         }
