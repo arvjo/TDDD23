@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour {
     public GameObject enemy;
     public GameObject player;
     public GameObject enemy2;
+    public GameObject enemy3;
+    public GameObject enemy4;
     public Vector3 spawnValues;
     public int enemyCount;
     private int enemyLives;
@@ -20,8 +22,15 @@ public class GameController : MonoBehaviour {
         gameState = GameObject.FindWithTag("GameState").GetComponent<GameState>();
         currentScene = SceneManager.GetActiveScene().buildIndex;
         spawnPlayer();
-        enemyLives = enemyCount*currentScene;
-        StartCoroutine(spawnEnemies(enemyCount,currentScene-1));
+        if (currentScene < 4)
+        {
+            enemyLives = enemyCount * currentScene;
+        }else
+        {         
+            enemyLives = enemyCount * currentScene + enemyCount*3;
+            Debug.Log(enemyLives);
+        }
+        StartCoroutine(spawnEnemies(enemyCount,currentScene));
     }
 
     void spawnPlayer()
@@ -42,14 +51,36 @@ public class GameController : MonoBehaviour {
             Vector3 spawnPosition = new Vector3(spawnValues.x, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);        
             Quaternion spawnRotation = Quaternion.identity;
             Instantiate(enemy, spawnPosition, spawnRotation);
-            if (currentScene == 1)
+            if (currentScene >= 2)
             {
-                Vector3 spawnPosition2 = new Vector3(spawnValues.x - 40, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
-                Instantiate(enemy2, spawnPosition2 , spawnRotation);
-            }
-            yield return new WaitForSeconds(3f);
+               // for (int x = 0; x < 1; ++x)
+                //{
+                    Vector3 spawnPosition2 = new Vector3(spawnValues.x - 90, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
+                    Instantiate(enemy2, spawnPosition2, spawnRotation);
+                   
+                //}
+                
                
-         
+            }
+          
+           
+            yield return new WaitForSeconds(1f);
+            if (currentScene >= 3)
+            {
+               
+                    Vector3 spawnPosition3 = new Vector3(Random.Range(spawnValues.x, -spawnValues.x), spawnValues.y, spawnValues.z);
+                    Instantiate(enemy3, spawnPosition3, spawnRotation);               
+            }
+
+            if (currentScene == 4)
+            {
+                for (int x = 0; x < 4; ++x)
+                {
+                    Vector3 spawnPosition4 = new Vector3(Random.Range(spawnValues.x, -spawnValues.x), spawnValues.y - 35, spawnValues.z);
+                    Instantiate(enemy4, spawnPosition4, spawnRotation);
+                }
+            }
+
             //yield return new WaitForSeconds(20f);
         }
         

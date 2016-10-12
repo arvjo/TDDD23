@@ -52,9 +52,10 @@ public class PlayerMove : MonoBehaviour {
             nextFire = Time.time + fireRate;
             for (int i = 0; i < extraBullets; ++i)
             {
-                Quaternion rotationAmount = Quaternion.Euler(0, 0, (extraBullets - 1) * -15 + (30 * i));
+                Quaternion rotationAmount = Quaternion.Euler(0, 0, (extraBullets - 1) * -2 + (4 * i));
                 Instantiate(bullet, rb.position, transform.rotation * rotationAmount);
 
+                //Instantiate(bullet, rb.position + (extraBullets-1) , transform.rotation);
             }
 
         }
@@ -63,16 +64,18 @@ public class PlayerMove : MonoBehaviour {
         {
             nextJump = Time.time + jumpRate;
             oldPos = rb.transform.position;
+          
             if ((rb.transform.position += transform.right * jumpDist).x > 80 || (rb.transform.position += transform.right * jumpDist).x < -80
                 || (rb.transform.position += transform.right * jumpDist).y > 40 || (rb.transform.position += transform.right * jumpDist).y < -40)
             {                         
                 rb.transform.position = oldPos;
             }
             else
-            {               
-                rb.velocity = new Vector2(1, 0);           
+            {
+                rb.velocity = new Vector2(0, 0);
+                rb.AddForce(transform.right * 500); 
             }
-
+            
         }
         
 

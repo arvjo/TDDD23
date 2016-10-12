@@ -14,7 +14,7 @@ public class GameState : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
         tallentTree = GameObject.FindWithTag("TallentTree").GetComponent<TallentTree>();
 
-        cleardLevels = new bool[2];
+        cleardLevels = new bool[4];
 
         if (gameStateInstance == null)
         {
@@ -34,7 +34,7 @@ public class GameState : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         gameStateInstance.currentScene = SceneManager.GetActiveScene().buildIndex;
-        if (gameStateInstance.currentScene > 0 && gameStateInstance.currentScene < 3 )
+        if (gameStateInstance.currentScene > 0 && gameStateInstance.currentScene < 5 )
         {
             
             gameStateInstance.previousScene = gameStateInstance.currentScene;
