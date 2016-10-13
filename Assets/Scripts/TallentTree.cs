@@ -8,6 +8,7 @@ public class TallentTree : MonoBehaviour {
     private int bullets = 1;
     private bool superBullet = false;
     private bool pMine = false;
+    private bool revTeleport = false;
     // Use this for initialization
     private static TallentTree tallentTreeInstance;
     private bool showButton = true;
@@ -18,7 +19,7 @@ public class TallentTree : MonoBehaviour {
     private bool bulletSkillUsed = false;
     private bool superBulletSkillUsed = false;
     private bool mineSkillUsed = false;
-
+    private bool teleSkillUsed = false;
     void Awake () {
         DontDestroyOnLoad(this.gameObject);
         
@@ -84,6 +85,21 @@ public class TallentTree : MonoBehaviour {
                 mineSkillUsed = true;
             }
 
+            if (tPoints < 1 || teleSkillUsed == true)
+            {
+                GUI.enabled = false;
+            }
+            else
+            {
+                GUI.enabled = true;
+            }
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "Reverse Teleport"))
+            {
+                revTeleport = true;
+                --tPoints;
+                teleSkillUsed = true;
+            }
+
             GUI.enabled = true;
             if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3 + 100) - (buttonHeight / 2), buttonWidth, buttonHeight), "Menu"))
             {
@@ -107,6 +123,12 @@ public class TallentTree : MonoBehaviour {
     {
         return pMine;
     }
+
+    public bool getRevTele()
+    {
+        return revTeleport;
+    }
+
     public void addTPoints()
     {
         ++tPoints;          
