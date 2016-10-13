@@ -7,6 +7,7 @@ public class TallentTree : MonoBehaviour {
 
     private int bullets = 1;
     private bool superBullet = false;
+    private bool pMine = false;
     // Use this for initialization
     private static TallentTree tallentTreeInstance;
     private bool showButton = true;
@@ -16,6 +17,7 @@ public class TallentTree : MonoBehaviour {
     private int newTPoints = 0;
     private bool bulletSkillUsed = false;
     private bool superBulletSkillUsed = false;
+    private bool mineSkillUsed = false;
 
     void Awake () {
         DontDestroyOnLoad(this.gameObject);
@@ -53,7 +55,7 @@ public class TallentTree : MonoBehaviour {
                 --tPoints;
                 bulletSkillUsed = true;
             }
-            if (tPoints <= 1 || superBulletSkillUsed == true)
+            if (tPoints < 1 || superBulletSkillUsed == true)
             {
                 GUI.enabled = false;               
             }
@@ -67,12 +69,19 @@ public class TallentTree : MonoBehaviour {
                 tPoints -= 2;
                 superBulletSkillUsed = true;
             }
-            
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4 + 110) - (buttonHeight / 2), buttonWidth, buttonHeight), "Bla!"))
+            if (tPoints < 1 || mineSkillUsed == true)
             {
-                bullets = 3;
+                GUI.enabled = false;
+            }
+            else
+            {
+                GUI.enabled = true;
+            }
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4 + 110) - (buttonHeight / 2), buttonWidth, buttonHeight), "Mines"))
+            {
+                pMine = true;
                 --tPoints;
-                bulletSkillUsed = true;
+                mineSkillUsed = true;
             }
 
             GUI.enabled = true;
@@ -92,6 +101,11 @@ public class TallentTree : MonoBehaviour {
     public bool getSuperBullet()
     {
         return superBullet;
+    }
+
+    public bool getpMine()
+    {
+        return pMine;
     }
     public void addTPoints()
     {

@@ -6,8 +6,10 @@ public class PlayerMove : MonoBehaviour {
 
     public GameObject bullet;
     public GameObject superBullet;
+    public GameObject proximityMine;
     private GameObject activeBullet;
     private bool sBullet;
+    private bool pMine;
     public float speed;
     public float reverseSpeed;
     public float maxSpeed = 10f;
@@ -30,14 +32,19 @@ public class PlayerMove : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         extraBullets = tallentTree.getExtraBullets();
         sBullet = tallentTree.getSuperBullet();
-        if(sBullet == false)
-        {
-            activeBullet = bullet;
-        }else
+        pMine = tallentTree.getpMine();
+        if(sBullet == true)
         {
             activeBullet = superBullet;
-            Debug.Log(activeBullet);
+            
+        }else if(pMine == true)
+        {
+            activeBullet = proximityMine;
         }
+        else{
+            activeBullet = bullet;
+        }
+        fireRate = activeBullet.GetComponent<Bullet>().fireRate;
         
     }
  

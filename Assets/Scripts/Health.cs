@@ -48,7 +48,7 @@ public class Health : MonoBehaviour {
                     healthBar.value = hp;
                     lastDmgTaken = Time.time;
                 }
-                    if (hp == 0)
+                    if (hp <= 0)
                 {
                    
                     if(gameObject.tag == "Player")

@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour {
                // for (int x = 0; x < 1; ++x)
                 //{
                     Vector3 spawnPosition2 = new Vector3(spawnValues.x - 90, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
-                    Instantiate(enemy2, spawnPosition2, spawnRotation);
+                    Instantiate(enemy4, spawnPosition2, spawnRotation);
                    
                 //}
                 
@@ -77,7 +77,7 @@ public class GameController : MonoBehaviour {
                 for (int x = 0; x < 4; ++x)
                 {
                     Vector3 spawnPosition4 = new Vector3(Random.Range(spawnValues.x, -spawnValues.x), spawnValues.y - 35, spawnValues.z);
-                    Instantiate(enemy4, spawnPosition4, spawnRotation);
+                    Instantiate(enemy2, spawnPosition4, spawnRotation);
                 }
             }
 
