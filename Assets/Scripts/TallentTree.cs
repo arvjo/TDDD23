@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class TallentTree : MonoBehaviour {
 
     private int bullets = 1;
+    private bool superBullet = false;
     // Use this for initialization
     private static TallentTree tallentTreeInstance;
     private bool showButton = true;
@@ -14,6 +15,7 @@ public class TallentTree : MonoBehaviour {
     private int tPoints = 0;
     private int newTPoints = 0;
     private bool bulletSkillUsed = false;
+    private bool superBulletSkillUsed = false;
 
     void Awake () {
         DontDestroyOnLoad(this.gameObject);
@@ -45,7 +47,28 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4) - (buttonHeight / 2), buttonWidth, buttonHeight), "3 bullets!"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "3 bullets!"))
+            {
+                bullets = 3;
+                --tPoints;
+                bulletSkillUsed = true;
+            }
+            if (tPoints <= 1 || superBulletSkillUsed == true)
+            {
+                GUI.enabled = false;               
+            }
+            else
+            {
+                GUI.enabled = true;
+            }
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4 + 10 ) - (buttonHeight / 2), buttonWidth, buttonHeight), "Super bullet!"))
+            {
+                superBullet = true;
+                tPoints -= 2;
+                superBulletSkillUsed = true;
+            }
+            
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4 + 110) - (buttonHeight / 2), buttonWidth, buttonHeight), "Bla!"))
             {
                 bullets = 3;
                 --tPoints;
@@ -53,7 +76,7 @@ public class TallentTree : MonoBehaviour {
             }
 
             GUI.enabled = true;
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3 + 50) - (buttonHeight / 2), buttonWidth, buttonHeight), "Menu"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3 + 100) - (buttonHeight / 2), buttonWidth, buttonHeight), "Menu"))
             {
                 SceneManager.LoadScene("menu");
                 showButton = false;
@@ -65,13 +88,13 @@ public class TallentTree : MonoBehaviour {
     {
         return bullets;
     }
+
+    public bool getSuperBullet()
+    {
+        return superBullet;
+    }
     public void addTPoints()
     {
-        ++newTPoints;
-        if(newTPoints != tPoints)
-        {
-            tPoints = newTPoints;
-        }
-        newTPoints = 0;
+        ++tPoints;          
     }
 }

@@ -5,6 +5,9 @@ public class PlayerMove : MonoBehaviour {
 
 
     public GameObject bullet;
+    public GameObject superBullet;
+    private GameObject activeBullet;
+    private bool sBullet;
     public float speed;
     public float reverseSpeed;
     public float maxSpeed = 10f;
@@ -19,14 +22,25 @@ public class PlayerMove : MonoBehaviour {
     private int jumpDist = 3;
 
     // Use this for initialization
-    void Start () {
-        rb = GetComponent<Rigidbody2D>();
-        extraBullets = tallentTree.getExtraBullets();
-    }
     void Awake()
     {
         tallentTree = GameObject.FindWithTag("TallentTree").GetComponent<TallentTree>();
     }
+    void Start () {
+        rb = GetComponent<Rigidbody2D>();
+        extraBullets = tallentTree.getExtraBullets();
+        sBullet = tallentTree.getSuperBullet();
+        if(sBullet == false)
+        {
+            activeBullet = bullet;
+        }else
+        {
+            activeBullet = superBullet;
+            Debug.Log(activeBullet);
+        }
+        
+    }
+ 
 
     // Update is called once per frame
     void FixedUpdate() {
@@ -53,9 +67,9 @@ public class PlayerMove : MonoBehaviour {
             for (int i = 0; i < extraBullets; ++i)
             {
                 Quaternion rotationAmount = Quaternion.Euler(0, 0, (extraBullets - 1) * -2 + (4 * i));
-                Instantiate(bullet, rb.position, transform.rotation * rotationAmount);
+                Instantiate(activeBullet, rb.position, transform.rotation * rotationAmount);
 
-                //Instantiate(bullet, rb.position + (extraBullets-1) , transform.rotation);
+                
             }
 
         }

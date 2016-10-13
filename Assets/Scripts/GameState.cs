@@ -51,13 +51,7 @@ public class GameState : MonoBehaviour {
     {
         if (cleardLevels[currentScene - 1] == false) { 
             cleardLevels[currentScene - 1] = true;
-            for (int i = 0; i < cleardLevels.Length; ++i)
-            {
-                if (cleardLevels[i] == true)
-                {
-                    tallentTree.addTPoints();
-                }
-            }
+            tallentTree.addTPoints();         
         }
     }
    
