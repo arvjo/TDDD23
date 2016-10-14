@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour {
             enemyLives = enemyCount * currentScene;
         }else
         {         
-            enemyLives = enemyCount * currentScene + enemyCount*3;
+            enemyLives = enemyCount * currentScene + enemyCount;
             Debug.Log(enemyLives);
         }
         StartCoroutine(spawnEnemies(enemyCount,currentScene));
@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour {
                // for (int x = 0; x < 1; ++x)
                 //{
                     Vector3 spawnPosition2 = new Vector3(spawnValues.x - 90, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
-                    Instantiate(enemy4, spawnPosition2, spawnRotation);
+                    Instantiate(enemy3, spawnPosition2, spawnRotation);
                    
                 //}
                 
@@ -69,12 +69,12 @@ public class GameController : MonoBehaviour {
             {
                
                     Vector3 spawnPosition3 = new Vector3(Random.Range(spawnValues.x, -spawnValues.x), spawnValues.y, spawnValues.z);
-                    Instantiate(enemy3, spawnPosition3, spawnRotation);               
+                    Instantiate(enemy4, spawnPosition3, spawnRotation);               
             }
 
             if (currentScene == 4)
             {
-                for (int x = 0; x < 4; ++x)
+                for (int x = 0; x < 2; ++x)
                 {
                     Vector3 spawnPosition4 = new Vector3(Random.Range(spawnValues.x, -spawnValues.x), spawnValues.y - 35, spawnValues.z);
                     Instantiate(enemy2, spawnPosition4, spawnRotation);

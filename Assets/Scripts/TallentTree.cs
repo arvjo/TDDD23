@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 
 public class TallentTree : MonoBehaviour {
-    public GUIStyle style;
     private int bullets = 1;
     private bool superBullet = false;
     private bool pMine = false;
@@ -14,7 +13,7 @@ public class TallentTree : MonoBehaviour {
     private bool showButton = true;
     private int currentScene;
     private int previousScene;
-    private int tPoints = 10;
+    private int tPoints = 0;
     private int newTPoints = 0;
     private bool bulletSkillUsed = false;
     private bool superBulletSkillUsed = false;
@@ -49,20 +48,19 @@ public class TallentTree : MonoBehaviour {
         {
             if (tPoints == 0 || bulletSkillUsed == true)
             {
-                //GUI.enabled = false;
+                GUI.enabled = false;
             }else
             {
                 GUI.enabled = true;
             }
             if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2 - Screen.width /12), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "3 bullets!"))
-            {
-                
+            {          
                 bullets = 3;
                 --tPoints;
                 bulletSkillUsed = true;
             }
 
-            if (tPoints < 1 || teleSkillUsed == true)
+            if (tPoints == 0 || teleSkillUsed == true)
             {
                 GUI.enabled = false;
             }
@@ -78,7 +76,7 @@ public class TallentTree : MonoBehaviour {
             }
 
 
-            if (tPoints < 1 || superBulletSkillUsed == true || mineSkillUsed == true)
+            if (tPoints < 2 || superBulletSkillUsed == true || mineSkillUsed == true)
             {
                 GUI.enabled = false;               
             }
@@ -86,7 +84,7 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth *2 - Screen.width/12), (2 * Screen.height / 4 + 110 ) - (buttonHeight / 2), buttonWidth, buttonHeight), "Super bullet!"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth /2 - Screen.width/12), (2 * Screen.height / 4 + 110 ) - (buttonHeight / 2), buttonWidth, buttonHeight), "Super bullet!"))
             {
                 superBullet = true;
                 tPoints -= 2;
@@ -94,7 +92,7 @@ public class TallentTree : MonoBehaviour {
             }
 
 
-            if (tPoints < 1 || mineSkillUsed == true || superBulletSkillUsed == true)
+            if (tPoints < 2 || mineSkillUsed == true || superBulletSkillUsed == true)
             {
                 GUI.enabled = false;
             }
@@ -102,7 +100,7 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2 - Screen.width/12), (2 * Screen.height / 4 + 110) - (buttonHeight / 2), buttonWidth, buttonHeight), "Mines"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2 - Screen.width/12), (2 * Screen.height / 4 + 110) - (buttonHeight / 2), buttonWidth, buttonHeight), "Mines"))
             {
                 pMine = true;
                 --tPoints;
