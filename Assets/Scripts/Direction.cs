@@ -13,10 +13,6 @@ public class Direction : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         float inputX = Input.GetAxis("Horizontal2");
-       
-       
-
-        //transform.rotation = Quaternion.Euler(0,Angle,0);
         rb.MoveRotation(rb.rotation + speed * inputX);
     }
 }

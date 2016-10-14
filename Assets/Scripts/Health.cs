@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Health : MonoBehaviour {
 
-    public int hp = 1;
+    public float hp = 1;
     public bool isEnemy = true;
     protected GameController gameController;
     private int enemyCount;
@@ -42,13 +42,18 @@ public class Health : MonoBehaviour {
             {
                
                 hp -= projectile.damadge;
+                
                 Destroy(projectile.gameObject);
                 if (gameObject.tag == "Player")
                 {
                     healthBar.value = hp;
                     lastDmgTaken = Time.time;
+                }else
+                {
+                    Debug.Log(hp);
                 }
-                    if (hp <= 0)
+
+                if (hp <= 0)
                 {
                    
                     if(gameObject.tag == "Player")

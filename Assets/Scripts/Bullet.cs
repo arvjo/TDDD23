@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
-    public int damadge = 1;
+    public float damadge = 1;
     public float lifeTime;
     public float fireRate;
     // Use this for initialization

@@ -42,14 +42,24 @@ public class PlayerMove : MonoBehaviour {
         revTele = tallentTree.getRevTele();
         if(sBullet == true)
         {
-            activeBullet = superBullet;
-            sBulletStart = new Vector2(10,0);
+            activeBullet = superBullet;            
         }else if(pMine == true)
         {
             activeBullet = proximityMine;
         }
         else{
             activeBullet = bullet;
+        }
+        if(extraBullets > 1)
+        {
+            if (sBullet == true || pMine == true)
+            {
+                activeBullet.GetComponent<Bullet>().damadge = 1;
+            }
+            else
+            {
+                activeBullet.GetComponent<Bullet>().damadge = 0.5F;
+            }
         }
         fireRate = activeBullet.GetComponent<Bullet>().fireRate;
         
