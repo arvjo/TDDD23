@@ -11,12 +11,19 @@ public class Health : MonoBehaviour {
     protected Slider healthBar;
     private float lastDmgTaken;
     private float tmp;
+    private float maxHp;
+    public SpecialEffects effects;
+    public SoundEffects soundEffects;
     // Use this for initialization
     void Start()
     {
+        maxHp = hp;
         healthBar = GameObject.FindWithTag("Healthbar").GetComponent<Slider>();
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        effects = GameObject.FindWithTag("Script").GetComponent<SpecialEffects>();
+        soundEffects = GameObject.FindWithTag("Script").GetComponent<SoundEffects>();
         lastDmgTaken = 0;
+       
     }
     void Update()
     {
@@ -24,7 +31,7 @@ public class Health : MonoBehaviour {
         { 
             if (Time.time - lastDmgTaken > 5)
             {
-                hp = 5;
+                hp = maxHp;
                 healthBar.value = hp;
             }
         }
@@ -48,9 +55,6 @@ public class Health : MonoBehaviour {
                 {
                     healthBar.value = hp;
                     lastDmgTaken = Time.time;
-                }else
-                {
-                    Debug.Log(hp);
                 }
 
                 if (hp <= 0)
@@ -65,6 +69,8 @@ public class Health : MonoBehaviour {
                         gameController.setECount();
                         
                     }
+                    effects.Explosion(transform.position);
+                    soundEffects.MakeExplosionSound(transform.position);
                     Destroy(gameObject);
                    
                 }

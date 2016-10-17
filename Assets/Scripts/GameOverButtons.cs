@@ -20,5 +20,10 @@ public class GameOverButtons : MonoBehaviour {
         SceneManager.LoadScene(menu);
     }
 
-   
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
+
+
 }

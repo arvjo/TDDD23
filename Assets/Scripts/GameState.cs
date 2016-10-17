@@ -8,7 +8,7 @@ public class GameState : MonoBehaviour {
     private int currentScene;
     private int previousScene;
     private bool [] cleardLevels;
-
+    private int currentLevel;
     // Use this for initialization
     void Awake () {
         DontDestroyOnLoad(this.gameObject);
@@ -21,7 +21,6 @@ public class GameState : MonoBehaviour {
             for (int i = 0; i < 2; ++i)
             {
                 cleardLevels[i] = false;
-                //Debug.Log(" hej" + cleardLevels[i]);
             }
             gameStateInstance = this;           
         }
@@ -53,6 +52,17 @@ public class GameState : MonoBehaviour {
             cleardLevels[currentScene - 1] = true;
             tallentTree.addTPoints();         
         }
+    }
+    public int getCleard()
+    {
+       
+        for(int i = 0; i < cleardLevels.Length; ++i)
+        {
+            currentLevel = i+1;
+            if (cleardLevels[i] == false)
+                break;
+        }
+        return currentLevel;
     }
    
 }

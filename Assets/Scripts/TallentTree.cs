@@ -14,7 +14,6 @@ public class TallentTree : MonoBehaviour {
     private int currentScene;
     private int previousScene;
     private int tPoints = 0;
-    private int newTPoints = 0;
     private bool bulletSkillUsed = false;
     private bool superBulletSkillUsed = false;
     private bool mineSkillUsed = false;
@@ -44,7 +43,7 @@ public class TallentTree : MonoBehaviour {
         const int buttonHeight = 100;
 
 
-        if (showButton && currentScene == 6)
+        if (showButton && currentScene == 7)
         {
             if (tPoints == 0 || bulletSkillUsed == true)
             {

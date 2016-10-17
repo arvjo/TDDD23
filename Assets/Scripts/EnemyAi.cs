@@ -8,13 +8,12 @@ public class EnemyAi : MonoBehaviour {
     private Rigidbody2D playerRb;
     private Rigidbody2D enemyRb;
     public GameObject bullet;
-    public int shootRate;
+    public float shootRate;
     private Vector3 direction;
     private bool dSwitchUp = true;
     public bool dSwitch;
     public int force;
     public int turnTime;
-   // public float shootrate = 100f;
 
     // Use this for initialization
     void Start () {
@@ -23,7 +22,7 @@ public class EnemyAi : MonoBehaviour {
         if (player != null)
         {
             playerRb = player.GetComponent<Rigidbody2D>();
-            InvokeRepeating("shoot", shootRate, 0.5F);
+            InvokeRepeating("shoot", 1.5F, shootRate);
         }
     }
 	
@@ -42,13 +41,7 @@ public class EnemyAi : MonoBehaviour {
             {
                 enemyRb.velocity = enemyRb.velocity / 1.05f;
             }
-            /*if (enemyRb.transform.rotation == Quaternion.AngleAxis(-angle, Vector3.forward))
-            {
-                dir = playerRb.position - enemyRb.position;
-                angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-            }*/
+                   
             enemyRb.AddForce(playerRb.position - enemyRb.position);
             if (dSwitch == true)
             {
@@ -60,7 +53,6 @@ public class EnemyAi : MonoBehaviour {
                 else
                 {
                     direction = playerRb.transform.up * -force;
-                    //dSwitchUp = true;
                 }
                 StartCoroutine(altBehaviour(direction));
 

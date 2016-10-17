@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour {
 
@@ -17,7 +18,6 @@ public class PlayerMove : MonoBehaviour {
     private Rigidbody2D rb;
     private int extraBullets = 1;
     private TallentTree tallentTree;
-    private LineRenderer line;
     public float fireRate = 0.5F;
     private float nextFire = 0.0F;
     private float jumpRate = 1.0F;
@@ -26,13 +26,16 @@ public class PlayerMove : MonoBehaviour {
     private float jumpBack = 0.0F;
     private Vector3 oldPos;
     private int jumpDist = 3;
-    private Vector2 sBulletStart = new Vector2(0,0);
+    private Timer timers;
+    private string jumpText;
+    public SoundEffects soundEffects;
 
     // Use this for initialization
     void Awake()
     {
         tallentTree = GameObject.FindWithTag("TallentTree").GetComponent<TallentTree>();
-        line = gameObject.GetComponent<LineRenderer>();
+        soundEffects = GameObject.FindWithTag("Script").GetComponent<SoundEffects>();
+        timers = gameObject.GetComponent<Timer>();
     }
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -40,6 +43,15 @@ public class PlayerMove : MonoBehaviour {
         sBullet = tallentTree.getSuperBullet();
         pMine = tallentTree.getpMine();
         revTele = tallentTree.getRevTele();
+        if(revTele == true)
+        {
+            jumpText = "jump back";    
+            timers.setJmpTime(jumpBackIn);
+        }else
+        {
+            jumpText = "jump";
+            timers.setJmpTime(jumpRate);
+        }
         if(sBullet == true)
         {
             activeBullet = superBullet;            
@@ -62,7 +74,7 @@ public class PlayerMove : MonoBehaviour {
             }
         }
         fireRate = activeBullet.GetComponent<Bullet>().fireRate;
-        
+        timers.setText(jumpText);
     }
  
 
@@ -89,6 +101,7 @@ public class PlayerMove : MonoBehaviour {
         {
             
             nextFire = Time.time + fireRate;
+            soundEffects.MakePlayerShotSound(transform.position);
             for (int i = 0; i < extraBullets; ++i)
             {
                 Quaternion rotationAmount = Quaternion.Euler(0, 0, (extraBullets - 1) * -2 + (4 * i));
@@ -100,7 +113,9 @@ public class PlayerMove : MonoBehaviour {
         if (Input.GetButtonUp("y-button") && Time.time > nextJump)
         {
             nextJump = Time.time + jumpRate;
-            if (revTele == true) {
+            timers.setJmpCd(true);
+         
+            if (revTele == true) {      
                 jumpBack = Time.time + jumpBackIn;                      
                 oldPos = rb.transform.position;
             }
@@ -127,7 +142,9 @@ public class PlayerMove : MonoBehaviour {
             rb.transform.position = oldPos;
         }
 
-    }
+    }  
 
- 
+
+
+
 }

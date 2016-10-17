@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
     private GameState gameState;
@@ -15,9 +16,11 @@ public class GameController : MonoBehaviour {
     public bool gameOver = false;
     private int currentScene;
     private bool showButton = false;
+    public GameObject text;
     // Use this for initialization
     void Start()
     {
+        text.GetComponent<Text>().enabled = false;
         Time.timeScale = 1;
         gameState = GameObject.FindWithTag("GameState").GetComponent<GameState>();
         currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -53,14 +56,8 @@ public class GameController : MonoBehaviour {
             Instantiate(enemy, spawnPosition, spawnRotation);
             if (currentScene >= 2)
             {
-               // for (int x = 0; x < 1; ++x)
-                //{
-                    Vector3 spawnPosition2 = new Vector3(spawnValues.x - 90, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
-                    Instantiate(enemy3, spawnPosition2, spawnRotation);
-                   
-                //}
-                
-               
+                Vector3 spawnPosition2 = new Vector3(spawnValues.x - 90, Random.Range(spawnValues.y, -spawnValues.y), spawnValues.z);
+                Instantiate(enemy3, spawnPosition2, spawnRotation);                                                               
             }
           
            
@@ -79,9 +76,7 @@ public class GameController : MonoBehaviour {
                     Vector3 spawnPosition4 = new Vector3(Random.Range(spawnValues.x, -spawnValues.x), spawnValues.y - 35, spawnValues.z);
                     Instantiate(enemy2, spawnPosition4, spawnRotation);
                 }
-            }
-
-            //yield return new WaitForSeconds(20f);
+            }           
         }
         
     }
@@ -119,11 +114,24 @@ public class GameController : MonoBehaviour {
         const int buttonHeight = 100;
         if (showButton == true)
         {
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4) - (buttonHeight / 2), buttonWidth, buttonHeight), "Next Level"))
-            {      
-                ++currentScene;
-                SceneManager.LoadScene(currentScene);
+            text.GetComponent<Text>().enabled = true;
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3 - buttonHeight) - (buttonHeight / 2), buttonWidth, buttonHeight), "Next Level"))
+            {
+                if (currentScene < 4)
+                {
+                    ++currentScene;
+                    SceneManager.LoadScene(currentScene);
+                }else
+                {
+                    SceneManager.LoadScene("Victory");
+                }
             }
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3) , buttonWidth, buttonHeight), "Menu"))
+            {
+                ++currentScene;
+                SceneManager.LoadScene("menu");
+            }
+            
         }
     }
 
