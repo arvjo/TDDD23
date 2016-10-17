@@ -52,7 +52,7 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2 - Screen.width /12), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "3 bullets!"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2 - Screen.width /12), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "Fire three bullets with\n half the dammadge per bullet\n simultaneously"))
             {          
                 bullets = 3;
                 --tPoints;
@@ -67,7 +67,7 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2 - Screen.width / 12), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "Reverse Teleport"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2 - Screen.width / 12), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "Teleport to the position\n you were at 2 seconds ago.\n The position is set\n at button press"))
             {
                 revTeleport = true;
                 --tPoints;
@@ -83,7 +83,7 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth /2 - Screen.width/12), (2 * Screen.height / 4 + 110 ) - (buttonHeight / 2), buttonWidth, buttonHeight), "Super bullet!"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth /2 - Screen.width/12), (2 * Screen.height / 4 ) , buttonWidth, buttonHeight), "Your bullets travel faster\n and have higer damadge,\n but you cant shoot as often.\n can be combined with \nmultiple bullets skill"))
             {
                 superBullet = true;
                 tPoints -= 2;
@@ -99,7 +99,7 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2 - Screen.width/12), (2 * Screen.height / 4 + 110) - (buttonHeight / 2), buttonWidth, buttonHeight), "Mines"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2 - Screen.width/12), (2 * Screen.height / 4), buttonWidth, buttonHeight), "Place mines at your current\n position instead of shooting\n bulets, can be combined with \nmultiple bullets skill"))
             {
                 pMine = true;
                 --tPoints;
