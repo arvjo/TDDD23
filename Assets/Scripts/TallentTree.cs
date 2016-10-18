@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
@@ -18,14 +19,18 @@ public class TallentTree : MonoBehaviour {
     private bool superBulletSkillUsed = false;
     private bool mineSkillUsed = false;
     private bool teleSkillUsed = false;
+    public Text points;
     void Awake () {
         DontDestroyOnLoad(this.gameObject);
         
 
         if (tallentTreeInstance == null)
         {
+
             tallentTreeInstance = this;
-        }else
+            
+        }
+        else
         {
             tallentTreeInstance.currentScene = SceneManager.GetActiveScene().buildIndex;
             tallentTreeInstance.showButton = true;
@@ -45,6 +50,8 @@ public class TallentTree : MonoBehaviour {
 
         if (showButton && currentScene == 7)
         {
+            points = GameObject.FindWithTag("Text").GetComponent<Text>();
+            points.text = " " + tPoints;
             if (tPoints == 0 || bulletSkillUsed == true)
             {
                 GUI.enabled = false;
@@ -52,7 +59,7 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2 - Screen.width /12), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "Fire three bullets with\n half the dammadge per bullet\n simultaneously"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2 - Screen.width /12), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "Fire three bullets with\n half the dammadge per bullet\n simultaneously.\n Cost: 1 point"))
             {          
                 bullets = 3;
                 --tPoints;
@@ -67,7 +74,7 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2 - Screen.width / 12), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "Teleport to the position\n you were at 2 seconds ago.\n The position is set\n at button press"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2 - Screen.width / 12), (2 * Screen.height / 5) - (buttonHeight / 2), buttonWidth, buttonHeight), "Teleport to the position\n you were at 2 seconds ago.\n The position is set\n at button press.\n Cost: 1 point"))
             {
                 revTeleport = true;
                 --tPoints;
@@ -83,7 +90,7 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth /2 - Screen.width/12), (2 * Screen.height / 4 ) , buttonWidth, buttonHeight), "Your bullets travel faster\n and have higer damadge,\n but you cant shoot as often.\n can be combined with \nmultiple bullets skill"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth /2 - Screen.width/12), (2 * Screen.height / 4 ) , buttonWidth, buttonHeight), "Your bullets travel faster\n and have higer damadge,\n but you cant shoot as often.\n can be combined with \nmultiple bullets skill.\n Cost: 2 points"))
             {
                 superBullet = true;
                 tPoints -= 2;
@@ -99,10 +106,10 @@ public class TallentTree : MonoBehaviour {
             {
                 GUI.enabled = true;
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2 - Screen.width/12), (2 * Screen.height / 4), buttonWidth, buttonHeight), "Place mines at your current\n position instead of shooting\n bulets, can be combined with \nmultiple bullets skill"))
+            if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth * 2 - Screen.width/12), (2 * Screen.height / 4), buttonWidth, buttonHeight), "Place mines at your current\n position instead of shooting\n bulets, can be combined with \nmultiple bullets skill.\n Cost: 2 points"))
             {
                 pMine = true;
-                --tPoints;
+                tPoints -= 2;
                 mineSkillUsed = true;
             }
 
@@ -138,6 +145,6 @@ public class TallentTree : MonoBehaviour {
 
     public void addTPoints()
     {
-        ++tPoints;          
+        ++tPoints;
     }
 }
